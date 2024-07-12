@@ -1,33 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --orange-color: 255 125 26;
+    --pale-orange-color: 255 237 224;
+  }
+
+  * {
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 700;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+  .container {
+    @apply mx-auto px-5 py-3.5 xl:px-48;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Scroll Bar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-custom-pale-orange-color;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-custom-orange-color rounded-xl;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-custom-orange-color;
+}
+
+/* Product Slider */
+
+.swiper-button-disabled {
+  opacity: 0.5;
+}
+
+.swiper-button-disabled:hover {
+  @apply !stroke-black;
+}
+
+.swiper-slide-thumb-active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  opacity: 0.7;
+}
+
+.swiper-slide-thumb-active {
+  @apply ring-2 ring-custom-orange-color relative;
 }
