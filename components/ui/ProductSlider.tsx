@@ -4,7 +4,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { MdOpenInFull } from "react-icons/md";
 import { Modal } from "antd";
 import Image from "next/image";
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -24,6 +24,8 @@ const ProductSlider: FC<ProductSliderPropsType> = ({
   const [thumbsSwiperModal, setThumbsSwiperModal] =
     useState<SwiperClass | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const modalSwiperNextBtnRef = useRef(null);
+  const modalSwiperprevBtnRef = useRef(null);
 
   return (
     <>
@@ -122,8 +124,8 @@ const ProductSlider: FC<ProductSliderPropsType> = ({
         <div className="product-swiper-modal relative">
           <Swiper
             navigation={{
-              prevEl: ".product-swiper-modal-prev-btn",
-              nextEl: ".product-swiper-modal-next-btn",
+              prevEl: modalSwiperprevBtnRef.current,
+              nextEl: modalSwiperNextBtnRef.current,
             }}
             thumbs={{ swiper: thumbsSwiperModal }}
             modules={[FreeMode, Navigation, Thumbs]}
@@ -182,10 +184,16 @@ const ProductSlider: FC<ProductSliderPropsType> = ({
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="product-swiper-modal-prev-btn size-12 bg-white rounded-full absolute top-56  -left-[23px] z-10 flex justify-center items-center stroke-black  hover:stroke-custom-orange-color cursor-pointer">
+          <div
+            ref={modalSwiperprevBtnRef}
+            className="product-swiper-modal-prev-btn size-12 bg-white rounded-full absolute top-56  -left-[23px] z-10 flex justify-center items-center stroke-black  hover:stroke-custom-orange-color cursor-pointer"
+          >
             <Prev />
           </div>
-          <div className="product-swiper-modal-next-btn size-12 bg-white rounded-full absolute top-56  -right-[23px] z-10 flex justify-center items-center stroke-black hover:stroke-custom-orange-color cursor-pointer">
+          <div
+            ref={modalSwiperNextBtnRef}
+            className="product-swiper-modal-next-btn size-12 bg-white rounded-full absolute top-56  -right-[23px] z-10 flex justify-center items-center stroke-black hover:stroke-custom-orange-color cursor-pointer"
+          >
             <Next />
           </div>
         </div>
