@@ -16,7 +16,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className=" md:container flex flex-col xl:px-60 lg:mt-12 lg:flex-row lg:justify-between lg:gap-16 xl:gap-0 2xl:gap-16">
-      <ProductSlider {...shoes} />
+      <ProductSlider
+        {...{ images: shoes.images, thumbnailImages: shoes.thumbnailImages }}
+      />
       <ProductDetails product={shoes} />
     </main>
   );

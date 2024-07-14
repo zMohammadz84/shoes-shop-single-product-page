@@ -14,7 +14,7 @@ import Next from "@/public/icons/Next";
 import Close from "@/public/icons/Close";
 import { ShoesType } from "@/types/ProductType";
 
-type ProductSliderPropsType = ShoesType;
+type ProductSliderPropsType = Pick<ShoesType, "images" | "thumbnailImages">;
 
 const ProductSlider: FC<ProductSliderPropsType> = ({
   images,
